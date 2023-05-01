@@ -13,9 +13,7 @@ def DoS_yoxlama(pkt_threshold=100, her_saniye=1):
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("Cari vaxt : ", current_time)
-    
-    print('Şəbəkə 10 dəfə yoxlanacaq')
-    s = 1
+    s= 0
     
     # Şəbəkədə təhlükəni yoxlamaq üçün dövr
     while True:
@@ -33,14 +31,10 @@ def DoS_yoxlama(pkt_threshold=100, her_saniye=1):
                 cari_tehluke = True
                 break
         else:
-            # Əgər təhlükə aşkar edilməzsə, təhlükə aşkar edilməmə məlumatı ekrana çap edilir
-            if s!=11:
-                cari_tehluke = False
-                
-                s +=1
-            else: #10-cu dövrdən sonra dövrü sonlandır, Əgər təhlükə aşkar edilməzsə bunu bildir
-                print("DoS təhlükəsi aşkar edilmədi!")
-                break
+            s +=1
+            cari_tehluke = False # Əgər təhlükə aşkar edilməzsə bunu bildir
+            print(f"DoS təhlükəsi aşkar edilmədi!({s})")
+
         
         # Hər saniyədən sonra yenidən hesablamaq üçün
         if cari_vaxt_ - baslangic_vaxti > her_saniye:
